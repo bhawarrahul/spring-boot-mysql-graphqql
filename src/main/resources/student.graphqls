@@ -1,0 +1,57 @@
+
+type Address {
+    id: ID
+    addressLine1: String!
+    addressLine2: String!
+    city: String!
+    state: String!
+    country: String!
+    pinCode: Int!
+}
+type Student {
+    id:ID
+    studentId: String!
+    firstName: String!
+    lastName: String!
+    phoneNumber: Int!
+    age: Int!
+    gender: Gender!
+    email: String!
+    address: Address!
+}
+input StudentInput {
+    id:ID
+    studentId: String!
+    firstName: String!
+    lastName: String!
+    phoneNumber: Int!
+    age: Int!
+    gender: Gender!
+    email: String!
+    address: AddressInput!
+}
+input AddressInput {
+    id: ID
+    addressLine1: String!
+    addressLine2: String!
+    city: String!
+    state: String!
+    country: String!
+    pinCode: Int!
+}
+enum Gender {
+    MALE,
+    FEMALE
+}
+
+type Query {
+	getAllStudent: [Student!]!
+	getStudentCount: Long!
+	getStudent(id: ID): Student!
+}
+
+type Mutation {
+	saveStudent(student: StudentInput!): Student!
+    deleteStudent(id: ID): Boolean
+}
+
